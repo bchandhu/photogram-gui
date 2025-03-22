@@ -8,5 +8,16 @@ class UsersController < ApplicationController
    render({:template => "user_templates/index"})
  end
 
+ def show
+  #Parameters: {"path_username" => "anisa"}
+  url_username = params.fetch("path_username")
+
+  matching_users = User.where({:username => url_username})
+
+  @the_user = matching_users.at(0)
+  
+  render({:template => "user_templates/show"})
+
+ end
 
 end
